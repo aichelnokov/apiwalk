@@ -19,3 +19,7 @@
 
 # Go workspace file
 go.work
+
+config/local.yaml
+config/dev.yaml
+config/prod.yaml

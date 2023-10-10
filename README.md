@@ -3,6 +3,12 @@
 ## Dependencies
 
 - Router [chi](https://github.com/go-chi/chi)
+- Configurator reader [cleanenv](https://github.com/ilyakaznacheev/cleanenv)
+
+## Commands
+
+- Build `go build ./cmd/apiwalk`
+- Run `CONFIG_PATH=./config/config.example.yaml ./apiwalk`
 
 ## Routes
 
