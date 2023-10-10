@@ -21,6 +21,9 @@ func main() {
   r.Use(middleware.Recoverer)
 	r.Use(middleware.Timeout(60 * time.Second))
 	
+	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("API Walk " + cfg.ApiConfig.Version))
+	})
 	routes.Walk(r)
 	
 	fmt.Println("Server started at " + cfg.HTTPServer.Host + ":" + cfg.HTTPServer.Port)

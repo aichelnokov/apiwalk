@@ -11,3 +11,5 @@ db_config: # конфигурация базы данных
   database: "apiwalk"
   username: "root"
   password: "password"
+api_config:
+  version: "v0.1.0"

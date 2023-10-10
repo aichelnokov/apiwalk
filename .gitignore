@@ -23,3 +23,6 @@ go.work
 config/local.yaml
 config/dev.yaml
 config/prod.yaml
+
+# Build
+build/*

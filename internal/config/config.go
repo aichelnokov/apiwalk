@@ -10,6 +10,7 @@ import (
 
 type Config struct {
 	Env         string `yaml:"env" env-default:"development"`
+	ApiConfig	`yaml:"api_config"`	
 	HTTPServer `yaml:"http_server"`
 	DBConfig `yaml:"db_config"`
 }
@@ -26,6 +27,10 @@ type DBConfig struct {
 	Database		string				`yaml:"database" env-default:"apiwalk"`
 	Username		string				`yaml:"username" env-default:"root"`
 	Password		string				`yaml:"password" env-default:""`
+}
+
+type ApiConfig struct {
+	Version			string				`yaml:"version" env-default:"v0.1.0"`
 }
 
 func MustLoad() *Config {

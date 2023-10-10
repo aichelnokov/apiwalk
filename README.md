@@ -7,8 +7,8 @@
 
 ## Commands
 
-- Build `go build ./cmd/apiwalk`
-- Run `CONFIG_PATH=./config/config.example.yaml ./apiwalk`
+- Build `go build -o ./build/apiwalk ./cmd/apiwalk`
+- Run `CONFIG_PATH=./config/config.example.yaml ./build/apiwalk`
 
 ## Routes
 
