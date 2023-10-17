@@ -29,7 +29,7 @@ func (p Point) GormValue(ctx context.Context, db *gorm.DB) clause.Expr {
 func (p *Point) Scan(src interface{}) (err error) {
   var data string
   
-	switch src := src.(type) {
+  switch src := src.(type) {
     case string:
       data = src
     case nil:
@@ -37,6 +37,10 @@ func (p *Point) Scan(src interface{}) (err error) {
     default:
       return errors.New("(*Point).Scan: unsupported data type")
   }
+
+  if len(data) == 0 {
+		return nil
+	}
 
   for i := 0; i < len(data); i++ {
 		if data[i] == ',' {
