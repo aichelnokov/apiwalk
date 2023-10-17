@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/aichelnokov/apiwalk/internal/config"
+	"github.com/aichelnokov/apiwalk/internal/storage/mysql/models"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -29,6 +30,8 @@ func New(DBConfig config.DBConfig) (*Storage, error) {
 	if err != nil {
 		return nil, fmt.Errorf("%s: %w", op, err)
 	}
+
+	db.AutoMigrate(&models.User{}, &models.Walk{})
 
 	return &Storage{db: db}, nil
 }
