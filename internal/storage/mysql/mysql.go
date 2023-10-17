@@ -13,11 +13,12 @@ type Storage struct {
 	db *gorm.DB
 }
 
-func New(db_config config.DBConfig) (*Storage, error) {
+func New(DBConfig config.DBConfig) (*Storage, error) {
 	const op = "storage.mysql.NewStorage"
+	const dsnString = "%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local"
 
 	db, err := gorm.Open(mysql.New(mysql.Config{
-		DSN: fmt.Sprintf("%s:%s@tcp=(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local", db_config.Username, db_config.Password, db_config.Host, db_config.Port, db_config.Database),
+		DSN: fmt.Sprintf(dsnString, DBConfig.Username, DBConfig.Password, DBConfig.Host, DBConfig.Port, DBConfig.Database),
 		DefaultStringSize: 256,
 		// DisableDatetimePrecision: true, // disable datetime precision, which not supported before MySQL 5.6
   	// DontSupportRenameIndex: true, // drop & create when rename index, rename index not supported before MySQL 5.7, MariaDB
