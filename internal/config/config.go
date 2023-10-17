@@ -23,7 +23,8 @@ type HTTPServer struct {
 }
 
 type DBConfig struct {
-  Host				string				`yaml:"host" env-default:"127.0.0.1"`
+	Host				string				`yaml:"host" env-default:"127.0.0.1"`
+	Port				string				`yaml:"port" env-default:"3306"`
 	Database		string				`yaml:"database" env-default:"apiwalk"`
 	Username		string				`yaml:"username" env-default:"root"`
 	Password		string				`yaml:"password" env-default:""`

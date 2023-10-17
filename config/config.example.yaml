@@ -8,6 +8,7 @@ http_server: # конфигурация нашего http-сервера
   idle_timeout: 30s
 db_config: # конфигурация базы данных
   host: "127.0.0.1"
+  port: "3306"
   database: "apiwalk"
   username: "root"
   password: "password"
