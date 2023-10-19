@@ -14,8 +14,8 @@ type User struct {
 	Password	string			`gorm:"size:64"`
 	CreatedAt	time.Time		
 	UpdatedAt	time.Time
-	DeletedAt time.Time
-	Walks			[]Walk			`gorm:"foreignKey:UserId;constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"`
+	DeletedAt *time.Time		
+	Walks			[]Walk			`gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL"`
 }
 
 type Walk struct {
