@@ -33,5 +33,31 @@ func New(DBConfig config.DBConfig) (*Storage, error) {
 
 	db.AutoMigrate(&models.User{}, &models.Walk{})
 
+	// h := md5.Sum([]byte("123qwe!"))
+	// db.Create(&models.User{
+	// 	Name:      "aichelnokov@gmail.com",
+	// 	Password:  fmt.Sprintf("%x", h),
+	// })
+
+	// db.Create(&models.User{
+	// 	Name:      "aichelnokov@gmail.com",
+	// 	Password:  fmt.Sprintf("%x", h),
+	// 	CreatedAt: time.Time{},
+	// 	UpdatedAt: time.Time{},
+	// 	Walks:     []models.Walk{{Coords: types.Point{X:54.494258, Y:36.207713}, Altitude: 200.000000}},
+	// })
+
+	var user models.User
+	// db.First(&user)
+	// db.Preload("Walks").First(&user, "users.name = ?", "aichelnokov@gmail.com")
+	// db.Model(&models.User{}).Preload("Walks").First(&user, "users.name = ?", "aichelnokov@gmail.com")
+	db.Model(&models.User{}).Joins("Walks").First(&user, "users.name = ?", "aichelnokov@gmail.com")
+
+	// db.Joins("RIGHT JOIN walks ON walks.user_id=users.id").Find(&user, "users.name = ?", "aichelnokov@gmail.com")
+	// fmt.Printf("%d %s %s %s", user.Id, user.Name, user.Password, user.CreatedAt.Format(constants.ISO8601))
+	fmt.Printf("Walk Id:%d X:%f Y:%f Altitude:%f", user.Walks[0].Id, user.Walks[0].Coords.X, user.Walks[0].Coords.Y, user.Walks[0].Altitude)
+	// fmt.Printf("Walk Id:%d Altitude:%f", user.Walks[0].Id, user.Walks[0].Altitude)
+
+
 	return &Storage{db: db}, nil
 }
